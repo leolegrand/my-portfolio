@@ -1,6 +1,6 @@
 import './globals.css'
 
-import { dancingScript } from '../utils/fonts';
+import { poppins } from '../utils/fonts';
 
 
 export const metadata = {
@@ -10,10 +10,9 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
-  
   return (
     <html lang="en">
-      <body className={dancingScript.className}>{children}</body>
+      <body className={poppins.className}>{children}</body>
     </html>
   )
 }

@@ -1,20 +1,20 @@
-.navigation{
+.navigation {
     height: 12vh; /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 12);
 }
 
-.list{
+.list {
     display: flex;
     height: 100%;
 }
 
-.listElement{
+.listElement {
     width: 33.33%;
     display: grid;
     place-items: center;
 }
 
-.listElement:nth-child(2){
+.listElement:nth-child(2) {
     border-right: 1px solid white;
     border-left: 1px solid white;
 }

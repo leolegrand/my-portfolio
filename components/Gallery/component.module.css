@@ -1,7 +1,7 @@
 .main{
 
     position: relative;
-    
+
     height: 78vh; /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 78);
     
@@ -11,6 +11,8 @@
 } 
 
 .title {
+    position: fixed;
+    padding: 1rem;
     font-size: 3rem;
 }
 
@@ -30,6 +32,14 @@
 
 }
 
+@keyframes slide {
+    from{
+        translate: -200%;
+    } to {
+        translate: 200%;
+    }
+}
+
 
 .card {
     min-width: 200px;
@@ -42,10 +52,20 @@
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
-@keyframes slide {
-    from{
-        translate: -200%;
-    } to {
-        translate: 200%;
-    }
+.arrowContainer{
+
+    position: absolute;
+    bottom: 10px;
+
+    width: 100%;
+    padding: 0 50px;
+
+    display: flex;
+    justify-content: space-between;
 }
+
+.arrowReverse {
+    rotate: 180deg;
+}
+
+
