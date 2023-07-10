@@ -5,6 +5,9 @@ import Image from 'next/image';
 import styles from './component.module.css'
 import Logo from '@/elements/Logo/Logo';
 
+import paintPalette from '../../public/palette-couleur.png';
+import paintPaletteNB from '../../public/palette.png'; 
+
 
 
 
@@ -22,7 +25,7 @@ const Header = () => {
             </button>
             <button className={styles.theme}>
                 <Image
-                 src="/../public/palette-couleur.png"
+                 src={paintPalette}
                  width={15}
                  height={15}
                  alt="Theme icon"
