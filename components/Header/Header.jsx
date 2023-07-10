@@ -22,7 +22,7 @@ const Header = () => {
             </button>
             <button className={styles.theme}>
                 <Image
-                 src="/../public/assets/palette-couleur.png"
+                 src="/../public/palette-couleur.png"
                  width={15}
                  height={15}
                  alt="Theme icon"
