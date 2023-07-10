@@ -1,12 +1,3 @@
-html {
-  font-family: var(--font-roboto-mono);
-  
-}
- 
-h1 {
-  font-family: var(--font-inter);
-}
-
 /* Reset */
 
 /* simplify sizing */
@@ -50,8 +41,28 @@ ul {
 }
 
 /* remove default button styles */
-
 button {
   background-color: transparent;
   border: none;
+}
+
+/* end of Reset */
+
+/* fix 100vh on mobiles devices (toolbar issues) */
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+html {
+  height: -webkit-fill-available;
+}
+
+/* Global setup */
+html {
+  font-family: var(--font-roboto-mono);
+  
+}
+ 
+h1 {
+  font-family: var(--font-inter);
 }
