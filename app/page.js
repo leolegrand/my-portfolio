@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './page.module.css'
 import Header from '@/components/Header/Header';
 import Navigation from '@/components/Navigation/Navigation';
@@ -11,10 +11,15 @@ import { useWindowSize } from '@/utils/hook/useWindowSize';
 
 const Page = () => {
   
-    const size = useWindowSize()
-    let vh = size.height * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    console.log(vh)
+  const size = useWindowSize();
+  let vh = size.height * 0.01;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Check if running in a browser environment
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+  }, [vh]);
   
 
   
