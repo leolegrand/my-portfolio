@@ -1,0 +1,22 @@
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: -50%;
+    left: -50%;
+    margin: -40px 0 0 -40px;
+    border-radius: 50%;
+    background-color: white;
+    backface-visibility: hidden;
+    transition: transform 250ms ease-out;
+    mix-blend-mode: difference;
+    z-index: 999999;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cursor-small {
+    transform: scale(0.5);
+  }

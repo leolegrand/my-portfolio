@@ -1,0 +1,94 @@
+.splashscreen{
+    animation: getOffScreen 3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 10;
+ }
+ 
+ .left{
+    animation: splashScreen_Left ease-in-out forwards 600ms;
+    animation-delay: 1.5s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #161616;
+    border-right: 1px solid #161616;
+    transition: transform 1s;
+ }
+
+ .right{
+    animation: splashScreen_Right ease-in-out forwards 600ms;
+    animation-delay: 1.5s;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #161616;
+    border-left: 1px solid #161616;
+    transition: transform 1s;
+ }
+ 
+ 
+ .progressbar{
+    animation: progressBar linear forwards 1s;
+    animation-delay: .5s;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 0%;
+    background-color: white;
+    transition: height 1s ease-in-out;
+ }
+
+@keyframes progressBar {
+    from{
+      height: 0%;
+    }
+    99%{
+      opacity: 1;
+      height: 100%;
+    }
+    100%{
+      opacity: 0;
+    }
+  
+}
+  
+@keyframes splashScreen_Left {
+    from{
+      border-right: 1px solid #ffffff;
+      translate: 0%;
+    }
+    99%{
+      
+      border-right: 1px solid #ffffff;
+    }
+    100%{
+      translate: -100%;
+      border-right: none;
+    }
+}
+  
+@keyframes splashScreen_Right {
+    from{
+      border-left: 1px solid #ffffff;
+      translate: 0%;
+    }
+    99%{
+      
+      border-left: 1px solid #ffffff;
+    }
+    100%{
+      translate: 100%;
+      border-left: none;
+    }
+}
+

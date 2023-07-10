@@ -1,0 +1,49 @@
+.main{
+
+    position: relative;
+
+    height: 78vh;
+    
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+
+} 
+
+.title {
+    font-size: 3rem;
+}
+
+.slider {
+
+    position: fixed;
+
+    overflow: hidden;
+
+    height: 78%;
+
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    /* animation: slide 3s linear infinite; */
+
+}
+
+.card {
+    min-width: 200px;
+    aspect-ratio: 2/3;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.9px);
+    -webkit-backdrop-filter: blur(4.9px);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+@keyframes slide {
+    from{
+        translate: -200%;
+    } to {
+        translate: 200%;
+    }
+}
