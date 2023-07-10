@@ -11,11 +11,13 @@ import { useWindowSize } from '@/utils/hook/useWindowSize';
 
 const Page = () => {
   
-  const size = useWindowSize()
-  let vh = size.height * 0.01
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+    const size = useWindowSize()
+    let vh = size.height * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    console.log(vh)
   
-  console.log(vh)
+
+  
   return (
     <div className={styles.layout}>
       <Header/>
