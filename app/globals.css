@@ -50,9 +50,11 @@ button {
 
 /* fix 100vh on mobiles devices (toolbar issues) */
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+
 }
+
 html {
   height: -webkit-fill-available;
 }
