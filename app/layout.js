@@ -1,6 +1,3 @@
-'use client'
-
-
 import './globals.css'
 
 import { dancingScript } from '../utils/fonts';
