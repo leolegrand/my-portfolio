@@ -9,11 +9,13 @@
     height: calc(var(--vh, 1vh) * 10);
 
     padding: 1em ;
+    z-index: 3;
 }
 
 .nameContainer {
     display: flex;
     align-items: center;
+    width: 33%;
 }
 
 .nameContainer svg {
@@ -26,15 +28,75 @@
     text-transform: uppercase;
 }
 
+.list {
+    display: flex;
+    gap: 2rem;
+}
+
+.listElement {
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 90%,
+        white 90%,
+        white 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+
+    transition: background-size 500ms;
+}
+
+.listElement:hover {
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
+.listElementCurrent {
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 90%,
+        white 90%,
+        white 100%
+    );
+    background-position-x: right;
+
+    background-size: 100% 100%;
+}
+
+@media (max-width: 850px) {
+    .list {
+      display: none;
+    }
+    .nameContainer {
+        width: auto;
+    }
+}
+
 .buttonsContainer {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 1.5rem;
+    width: 33%;
 }
 
 .lang {
     font-size: 1rem;
 }
+
+.theme {
+    cursor: pointer;
+    transition: scale 350ms;
+}
+
+.theme:hover {
+    scale: .9;
+}
+
+
 
 
 

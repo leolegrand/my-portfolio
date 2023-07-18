@@ -58,6 +58,18 @@ body {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
 overflow: hidden;
+
+    /* background-color: #3e930d; */
+    /* background-color: #9d2936; */
+    background-color: #361087;
+}
+
+.dark-theme {
+  background-color: #121212;
+}
+
+.colorful-theme {
+  background-color: #3e930d;
 }
 
 html {

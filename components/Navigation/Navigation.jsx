@@ -8,7 +8,7 @@ const Navigation = () => {
         <nav className={styles.navigation}>
             <ul className={styles.list}>
                 <li className={styles.listElement}><Link href="/About">About</Link></li>
-                <li className={styles.listElement}><Link href="/Works">Works</Link></li>
+                <li className={styles.listElement}><Link href="/Works">Portfolio</Link></li>
                 <li className={styles.listElement}><Link href="/Contact">Contact</Link></li>
             </ul>
         </nav>

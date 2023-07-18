@@ -1,6 +1,12 @@
-import './globals.css'
+"use client"
 
+import './globals.css'
 import { poppins } from '../utils/fonts';
+import Blob from '@/elements/Blob/Blob';
+import Header from '@/components/Header/Header';
+import Navigation from '@/components/Navigation/Navigation';
+
+import useMediaQuery from '@/hook/useMediaQuery';
 
 
 export const metadata = {
@@ -10,9 +16,21 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+
+  const isMobile = useMediaQuery('(max-width: 850px)'); 
+
   return (
-    <html lang="en">
-      <body className={poppins.className}>{children}</body>
+    <html lang="fr">
+      <body className={poppins.className}>
+        <Blob/>
+        <Header/>
+        {children}
+        {isMobile ? 
+            <Navigation/>
+             : 
+             null }
+       </body>
+       
     </html>
   )
 }
