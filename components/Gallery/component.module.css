@@ -35,7 +35,10 @@
     align-items: center;
     gap: 50px;
 
+    
     /* animation: slide 3s linear infinite; */
+
+    perspective: 800px;
 
 }
 
