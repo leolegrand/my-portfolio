@@ -8,7 +8,7 @@
     border-radius: 16px;
 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 1);
     backdrop-filter: blur(4.9px);
     -webkit-backdrop-filter: blur(4.9px);
     
@@ -17,68 +17,54 @@
     transform-style: preserve-3d;
 }
 
-
-/* Class dynamically applied on click to the card */
-.cardOpen {
-    animation: cardOpening 750ms 1s ease-in-out forwards;
-    transform: rotateY(180deg);
-    
-}
-
-
-
-@keyframes contentDisapear {
-    from{
-         display: flex;
-    }
-    to {
-         display: none;
-     }
- }
-
-/* After the flipping effect, we change the size of the card to get more screen space */
-@keyframes cardOpening {
-   from{
-        width: auto;
-        height: 75%;
-        border-radius: 16px;
-        border: 2px solid white;
-   }
-   to {
-        border-radius: 0;
-        border: 0;
-        width: 100vw;
-        height: 100%;
-    }
-}
-
-
 .front {
     height: 100%;
     width: 100%;
     position: absolute;
-    backface-visibility: hidden;
-
+    background-color: red;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    backface-visibility: hidden;
 }
 
 .back {
+    background-color: yellow;
     transform: rotateY(180deg);
-
     height: 100%;
     width: 100%;
     position: absolute;
-    backface-visibility: hidden;
-
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backface-visibility: hidden;
 }
+
+
+/* Class dynamically applied on click to the card */
+.cardOpen {
+    animation: cardOpening 750ms 1s ease-in-out forwards;
+    transform: rotateY(180deg);
+}
+
+/* After the flipping effect, we change the size of the card to get more screen space */
+@keyframes cardOpening {
+    from{
+         width: auto;
+         height: 75%;
+         border-radius: 16px;
+         border: 2px solid white;
+    }
+    to {
+         border-radius: 0;
+         border: 0;
+         width: 100vw;
+         height: 100%;
+     }
+ }
 
 
 
