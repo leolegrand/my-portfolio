@@ -20,6 +20,9 @@ const Card = ({projets, projet, index, slider}) => {
         setFirstCardClicked(value)
     }
 
+    //
+    //
+
     const handleCardIndexNext = () => {
         setCardIndex(cardIndex + 1)
         if(cardIndex === projets.length -1){
@@ -69,6 +72,7 @@ const Card = ({projets, projet, index, slider}) => {
         }, 750)
     }
 
+    const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
     
     return (
             <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
