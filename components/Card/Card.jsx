@@ -9,6 +9,11 @@ import cross from "@/public/croix.png"
 const Card = ({projets, projet, index, slider}) => {
 
     const [cardIndex, setCardIndex] = useState(index)
+
+    // pas urgent
+    // bug fixes : empêche la carte sélectionnée initialement d'être supprimée si une autre carte est affiché lors de la fermeture (son dom étant remplacé)
+    // problématique : lors de l'animation de fermeture on voit la mauvaise carte se refermer
+    // piste : créer un clone de la carte initialement sélectionée et l'ajouter au dom à la fermeture
     const [firstCardClicked, setFirstCardClicked] = useState()
 
     const handleFirstCardClicked = (value) => {
@@ -32,7 +37,7 @@ const Card = ({projets, projet, index, slider}) => {
     const cardRef = useRef(null);
 
     const handleCardOpen = () => {  
-        setFirstCardClicked(index)
+        handleFirstCardClicked(index)
         // enlarge the card and place it at the start of the X axis
         cardRef.current.classList.remove(`${styles.cardClosing}`)
         cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start' });
@@ -43,7 +48,6 @@ const Card = ({projets, projet, index, slider}) => {
                 slider.current.style.overflowX = "hidden"
             }
     }   
-
 
     const handleCardClose = (event) => {
         setCardIndex(firstCardClicked)
@@ -64,8 +68,6 @@ const Card = ({projets, projet, index, slider}) => {
             }
         }, 750)
     }
-
-    const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
 
     
     return (
