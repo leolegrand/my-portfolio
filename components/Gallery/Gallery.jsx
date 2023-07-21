@@ -9,6 +9,7 @@ import Card from '../Card/Card';
 const Gallery = ({projets}) => {
     const sliderRef = useRef(null);
 
+
     useEffect(() => {
       const slider = sliderRef.current;
   
@@ -33,14 +34,16 @@ const Gallery = ({projets}) => {
     }, []);
 
 
+
     return (
-        <main className={styles.main} >
+        <main className={styles.main}>
             <section className={styles.gallery} ref={sliderRef} id="slider">
 
-            {projets.map((projet, index) => <Card projet={projet} key={index}/>)}
+            {projets.map((projet, index) => <Card projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
 
             </section>
-            <div className={styles.arrowContainer}>
+
+            {/* <div className={styles.arrowContainer}>
               <button className={styles.arrowButton}>
                 <Image
                     className={styles.arrowReverse}
@@ -63,7 +66,8 @@ const Gallery = ({projets}) => {
               </button>
                  
                  
-            </div>
+            </div> */}
+            
         </main>
     );
 };

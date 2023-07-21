@@ -34,6 +34,7 @@ const Page = () => {
           categories[]->{
             title
           },
+          job,
           date,
           miniDescriptionFrancais,
           descriptionFrancais,
@@ -67,12 +68,14 @@ const Page = () => {
     <>
     <div className={styles.layout}> 
       <Gallery projets={data}/>      
-    </div>
+    </div> 
     </>
   );
 } else {
+  <>
   <div className={styles.layout}> 
     </div>
+  </>
 }
   
 };

@@ -20,20 +20,21 @@
 
     /* Slider */
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+
+
+    /* -webkit-overflow-scrolling: touch;
     scroll-snap-points-x: repeat(300px);
     scroll-snap-type: mandatory;
-    /* this will hide the scrollbar in mozilla based browsers */
     overflow: -moz-scrollbars-none;
      scrollbar-width: none;
-    /* this will hide the scrollbar in internet explorers */
-    -ms-overflow-style: none;
+    -ms-overflow-style: none; */
 
     height: 100%;
 
     display: flex;
     align-items: center;
     gap: 50px;
+    padding: 0 150px;
 
     
     /* animation: slide 3s linear infinite; */
@@ -55,8 +56,6 @@
         translate: 200%;
     }
 }
-
-
 
 
 .arrowContainer {
@@ -95,7 +94,7 @@
     }
 
     .gallery{
-        height: 85%;
+        height: 100%;
     }
 
     .card {

@@ -19,6 +19,10 @@
     border-left: 1px solid white;
 }
 
+.listElementCurrent {
+    text-decoration: underline;
+}
+
 @media (min-width: 850px) {
     .navigation {
         display: none;

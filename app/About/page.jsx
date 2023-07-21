@@ -6,6 +6,7 @@ import Logo from '@/elements/Logo/Logo';
 import style from './page.module.css'
 import { useWindowSize } from '@/hook/useWindowSize';
 import photodeprofil from '@/public/photo.png'
+import Navigation from '@/components/Navigation/Navigation';
 
 const About = () => {
 
@@ -42,6 +43,7 @@ const About = () => {
             
             </div>
         </main>
+        <Navigation/>
         </>
     );
 };

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <Blob/>
         <Header/>
         {children}
-        <Navigation/>    
+        <Navigation/>
        </body>
     </html>
   )

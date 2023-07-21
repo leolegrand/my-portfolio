@@ -1,27 +1,70 @@
 .card {
-    position: relative;
+    /* position: relative;
     
-    height:75%;
+    height: 60%;
     aspect-ratio: 2/3;
+    
 
     border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 16px;
 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 1);
-    backdrop-filter: blur(4.9px);
-    -webkit-backdrop-filter: blur(4.9px);
+    background: rgba(255, 255, 255, 0.25);    
     
+    transition: all 1s;
+    transform-style: preserve-3d; */
+    position: relative;
+    
+    height: 60%;
+    min-width: 65vw;
+    
+
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.25);    
     
     transition: all 1s;
     transform-style: preserve-3d;
+}
+
+@keyframes cardOpening {
+    from {
+         min-width: 65vw;
+         height: 60%;
+         border-radius: 16px;
+         border: 2px solid white;
+    }
+    to {
+         border-radius: 0;
+         border: 0;
+         min-width: 100vw ;
+         height: 100%;
+     }
+}
+
+ @keyframes cardClosing {
+    from {
+        border-radius: 0;
+        border: 0;
+        min-width: 100vw ;
+        height: 100%;
+
+        
+    }
+    to {
+         min-width: 65vw;
+         height: 60%;
+         border-radius: 16px;
+         border: 2px solid white;
+     }
 }
 
 .front {
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: red;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -31,12 +74,10 @@
 }
 
 .back {
-    background-color: yellow;
     transform: rotateY(180deg);
     height: 100%;
     width: 100%;
     position: absolute;
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,29 +85,15 @@
 }
 
 
-/* Class dynamically applied on click to the card */
 .cardOpen {
-    animation: cardOpening 750ms 1s ease-in-out forwards;
     transform: rotateY(180deg);
+    animation: cardOpening 750ms ease-in-out forwards;
 }
 
-/* After the flipping effect, we change the size of the card to get more screen space */
-@keyframes cardOpening {
-    from{
-         width: auto;
-         height: 75%;
-         border-radius: 16px;
-         border: 2px solid white;
-    }
-    to {
-         border-radius: 0;
-         border: 0;
-         width: 100vw;
-         height: 100%;
-     }
- }
-
-
+.cardClosing {
+    transform: rotateY(360deg);
+    animation: cardClosing 750ms ease-in-out forwards;
+}
 
 .header{
     display: flex;
@@ -107,13 +134,157 @@
     border-radius: 20px;
 }
 
-@media (min-width: 850px) {
-    .card {
-        background-color: transparent;
-        border-radius: 0;
-        border: 0;
-        aspect-ratio: 0;
-        height: 100%;
-        min-width:100vw;
-    }
+.nav {
+    position: absolute;
+    bottom: 1vw;
+    width: 100vw;
+    height: 12vh;
+    background-color: red;
 }
+
+.back {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 10% 2fr 5% 5% 1fr 10% 20%; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "Head Head Head Head"
+      "Photos Photos Photos Photos"
+      "Date Date Job Job"
+      "Technos Technos Technos Technos"
+      "Texte Texte Texte Texte"
+      "Links Links Links Links"
+      "left left right right"; 
+  }
+
+  
+.Head {
+    grid-area: Head;
+
+    width: 100%;
+    padding: 1rem;
+
+    border-bottom: 1px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+.Photos {
+    grid-area: Photos;
+
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    gap: 10px;
+
+    height: 100%;
+
+    border-bottom: 1px solid white;
+    padding: 5px;
+}
+
+.Photos img {
+    object-fit: contain;
+    width: 80%;
+}
+  
+.Date { 
+    grid-area: Date; 
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+}
+  
+.Job { 
+    grid-area: Job;
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid white;
+}
+  
+.Technos { 
+    padding: 1em;
+    grid-area: Technos;
+
+    height: 100%;
+
+}
+  
+.Texte { 
+    grid-area: Texte;
+
+    height: 100%;
+    padding: 1em;
+
+    border-bottom: 1px solid white;
+}
+  
+.Links {
+    grid-area: Links;
+
+    height: 100%;
+
+    border-bottom: 1px solid white;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Links a {
+    padding: 1rem;
+}
+
+.left { 
+    grid-area: left;
+
+    border-right: 1px solid white;
+    height: 100%; 
+    width: 100%;
+}
+
+.right { 
+    grid-area: right;
+    
+    height: 100%; 
+    width: 100%;
+}
+
+
+.left button, .right button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.left img, .right img {
+    object-fit: contain;
+}
+
+.arrowReverse {
+    transform: rotate(180deg);
+}
+
+.closeButton img {
+    height: 25px;
+    width: 25px;
+    z-index: 10;
+    opacity: 1;
+}
+

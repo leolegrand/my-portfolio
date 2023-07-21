@@ -1,15 +1,19 @@
+'use client'
 import React from 'react';
 import styles from './component.module.css'
 import Link from 'next/link';
 
+import { usePathname } from 'next/navigation';
+
 
 const Navigation = () => {
+    const pathname = usePathname()
     return (
-        <nav className={styles.navigation}>
+        <nav className={styles.navigation} id='navigation'>
             <ul className={styles.list}>
-                <li className={styles.listElement}><Link href="/About">About</Link></li>
-                <li className={styles.listElement}><Link href="/Works">Portfolio</Link></li>
-                <li className={styles.listElement}><Link href="/Contact">Contact</Link></li>
+                <li className={ pathname === "/About" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/About">About</Link></li>
+                <li className={ pathname === "/Works" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/Works">Portfolio</Link></li>
+                <li className={ pathname === "/Contact" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/Contact">Contact</Link></li>
             </ul>
         </nav>
     );
