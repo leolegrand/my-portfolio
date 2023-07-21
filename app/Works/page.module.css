@@ -1,6 +1,9 @@
 .layout {
     z-index: 3;
     width: 100%;
+    height: 78%;
+    /* height: 78vh;
+    height: calc(var(--vh, 1vh) * 78); */
 }
  
 .card {

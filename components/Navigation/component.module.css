@@ -1,6 +1,7 @@
 .navigation {
-    height: 12vh; /* Fallback for browsers that do not support Custom Properties */
-    height: calc(var(--vh, 1vh) * 12);
+    /* height: 12vh; 
+    height: calc(var(--vh, 1vh) * 12); */
+    height: 12%;
 }
 
 .list {

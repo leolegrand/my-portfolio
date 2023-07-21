@@ -2,8 +2,7 @@
     
     position: relative;
 
-    height: 78vh; /* Fallback for browsers that do not support Custom Properties */
-    height: calc(var(--vh, 1vh) * 78);
+    height: 100%;
     
     border-top: 1px solid white;
     border-bottom: 1px solid white;
@@ -36,8 +35,8 @@
     align-items: center;
     gap: 50px;
     padding: 0 150px;
-/* 
-    perspective: 800px; */
+
+    perspective: 800px;
 
 }
 

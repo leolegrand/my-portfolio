@@ -5,9 +5,9 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 10vh; /* Fallback for browsers that do not support Custom Properties */
-    height: calc(var(--vh, 1vh) * 10);
-
+    /* height: 10vh;
+    height: calc(var(--vh, 1vh) * 10); */
+    height: 10%;
     padding: 1em ;
     z-index: 3;
 }
