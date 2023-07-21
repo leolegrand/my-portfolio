@@ -1,21 +1,10 @@
 .layout {
     z-index: 3;
     width: 100%;
-    height: 78%;
-    /* height: 78vh;
-    height: calc(var(--vh, 1vh) * 78); */
+    height: 78vh;
+    height: calc(var(--vh, 1vh) * 78);
 }
  
-.card {
-    aspect-ratio: 8/13;
-    width: 50vw;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.9px);
-    -webkit-backdrop-filter: blur(4.9px);
-    border: 1px solid rgba(255, 255, 255, 1);
-}
 
 
  

@@ -1,7 +1,6 @@
 .navigation {
-    /* height: 12vh; 
-    height: calc(var(--vh, 1vh) * 12); */
-    height: 12%;
+    height: 12vh; 
+    height: calc(var(--vh, 1vh) * 12);
 }
 
 .list {

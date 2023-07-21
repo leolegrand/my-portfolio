@@ -115,7 +115,6 @@
 }
 
 .card img {
-    max-height: 100%;
     width: 50%;
 }
 
@@ -255,14 +254,13 @@
     grid-area: left;
 
     border-right: 1px solid white;
-    height: 100%; 
+     height: 100%;
     width: 100%;
 }
 
 .right { 
     grid-area: right;
-    
-    height: 100%; 
+    height: 100%;
     width: 100%;
 }
 
@@ -276,6 +274,7 @@
 }
 
 .left img, .right img {
+    height: 100%;
     object-fit: contain;
 }
 
