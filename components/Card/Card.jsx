@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 import styles from "./component.module.css"
 
@@ -6,7 +6,12 @@ import Image from 'next/image';
 import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
 
-const Card = ({projets, projet, index, slider}) => {
+const Card = ({projets, index, slider}) => {
+    
+        // const header =  document.querySelector('#header') 
+        // const navigation = document.querySelector('#navigation')
+        // const main = document.querySelector("#main")
+        // const galleryContainer = document.querySelector('#galleryContainer')
 
     const [cardIndex, setCardIndex] = useState(index)
 
@@ -40,19 +45,60 @@ const Card = ({projets, projet, index, slider}) => {
     const cardRef = useRef(null);
 
     const handleCardOpen = () => {  
+
         handleFirstCardClicked(index)
+        slider.current.style.overflowX = "hidden"
         // enlarge the card and place it at the start of the X axis
         cardRef.current.classList.remove(`${styles.cardClosing}`)
         cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start' });
         cardRef.current.classList.add(`${styles.cardOpen}`)
             // forbide user to scroll on the slider
-            if (slider.current) {
-                // Access and manipulate the DOM element here
-                slider.current.style.overflowX = "hidden"
+            
+            setTimeout(() => {
+                if(main && header && navigation && galleryContainer){
+
+                    main.style.height = "100vh"
+                    main.style.height = "calc(var(--vh, 1vh) * 100)" 
+
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
+                    main.style.transform = "translateY(-10vh)"
+
+                    galleryContainer.style.borderTop = "none"
+                    galleryContainer.style.borderBottom = "none"
+
+                    header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
+                    header.style.transform = "translateY(-10vh)"
             }
+        },250);
+            
+                    
+            
+            
     }   
 
     const handleCardClose = (event) => {
+
+            if (main && header) {
+                // Access and manipulate the DOM element here
+                    main.style.height = "78vh"
+                    main.style.height = "calc(var(--vh, 1vh) * 78)" 
+    
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
+                    main.style.transform = "translateY(0vh)"
+    
+                    galleryContainer.style.borderTop = "1px solid white"
+                    galleryContainer.style.borderBottom = "1px solid white"
+    
+                    header.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
+                    header.style.transform = "translateY(0vh)"
+    
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
+                    main.style.transform = "translateY(0vh)"
+            }
+
+        
+
+
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
@@ -67,7 +113,7 @@ const Card = ({projets, projet, index, slider}) => {
                 //     left: 2000,
                 //     behavior: 'smooth'
                 //   });
-                slider.current.style.overflowX = "auto"
+                slider.current.style.overflowX = "scroll"
             }
         }, 750)
     }

@@ -66,7 +66,7 @@ const Page = () => {
   if(data){
   return (
     <>
-    <div className={styles.layout}> 
+    <div className={styles.layout} id='main'> 
       <Gallery projets={data}/>      
     </div> 
     </>

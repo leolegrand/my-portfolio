@@ -33,11 +33,19 @@ const Gallery = ({projets}) => {
       };
     }, []);
 
+    
+
+    
+    const handleScroll = (event) => {
+      const scrollSpeed = 6
+      slider.scrollLeft += event.deltaY * scrollSpeed
+    }
+
 
 
     return (
-        <main className={styles.main}>
-            <section className={styles.gallery} ref={sliderRef} id="slider">
+        <main className={styles.main} id='galleryContainer'>
+            <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(e)=>handleScroll(event)}>
 
             {projets.map((projet, index) => <Card projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
 
