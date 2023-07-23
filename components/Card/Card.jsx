@@ -1,3 +1,5 @@
+'use client'
+
 import React, {useState, useRef, useEffect} from 'react';
 
 import styles from "./component.module.css"
@@ -18,7 +20,10 @@ function isIOS() {
   if (isIOS()) {
     // Code to run if the user is on an iOS device
     console.log("This is an iOS device.");
-    slider.current.style.gap = "75px"
+    if(slider.current){
+        slider.current.style.gap = "75px"
+    }
+    
     // height doit être 65%
     // width doit être 75vw
   } else {
