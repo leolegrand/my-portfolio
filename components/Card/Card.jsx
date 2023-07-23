@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 
 import styles from "./component.module.css"
 
@@ -11,30 +11,42 @@ import useMediaQuery from '@/hook/useMediaQuery';
 
 const Card = ({projets, index, slider}) => {
 
-    // Function to check if the user is on an iOS device
-function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  }
-  
-  // Example usage:
-  if (isIOS()) {
-    // Code to run if the user is on an iOS device
-    console.log("This is an iOS device.");
-    if(slider.current){
-        slider.current.style.gap = "75px"
-    }
-    
-    // height doit être 65%
-    // width doit être 75vw
-  } else {
-    // Code to run for other devices (non-iOS)
-    console.log("This is not an iOS device.");
-  }
+    // pas urgent
+    // bug fixes : empêche la carte sélectionnée initialement d'être supprimée si une autre carte est affiché lors de la fermeture (son dom étant remplacé)
+    // problématique : lors de l'animation de fermeture on voit la mauvaise carte se refermer
+    // piste : créer un clone de la carte initialement sélectionée et l'ajouter au dom à la fermeture
 
     const isDesktop = useMediaQuery('(min-width: 850px)')
 
-    let timeOutDuration = null 
+    const [cardIndex, setCardIndex] = useState(index)
 
+    const [firstCardClicked, setFirstCardClicked] = useState()
+
+    const handleFirstCardClicked = (value) => {
+        setFirstCardClicked(value)
+    }
+
+    const cardRef = useRef(null);
+
+    let timeOutDuration = 0
+
+    // =============== iOS fix  =============== //
+
+    // Check if the user is on an iOS device
+    const isIOS = () => {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+    
+    if (isIOS()) {
+        // If user is on iOS device we have to adjust the slider layout,
+        // the user can only see ONE CARD at the center of the screen and no parts of the cart of the left and right cards
+        // If not, the user can trigger scrollBy & scrollIntoView JS function that are broken on iOS devices, we dont want that to happen.
+        if(slider.current){
+            slider.current.style.gap = "75px"
+        }
+    } 
+
+    // =============== =============== //
 
     const centerCardOnSliderXAxis = () => {
         // Get map coordinates
@@ -51,40 +63,15 @@ function isIOS() {
 
         // Only scroll if the card is not already centered
         if (Math.abs(offset) > 1) {
-            console.log('350')
             timeOutDuration = 350
             slider.current.scrollBy({
                 left: offset
             });
         } else {
-            console.log('0')
             timeOutDuration = 0
         }       
     }
     
-
-        // const header =  document.querySelector('#header') 
-        // const navigation = document.querySelector('#navigation')
-        // const main = document.querySelector("#main")
-        // const galleryContainer = document.querySelector('#galleryContainer')
-
-    const isMobile = useMediaQuery('')
-
-    const [cardIndex, setCardIndex] = useState(index)
-
-    // pas urgent
-    // bug fixes : empêche la carte sélectionnée initialement d'être supprimée si une autre carte est affiché lors de la fermeture (son dom étant remplacé)
-    // problématique : lors de l'animation de fermeture on voit la mauvaise carte se refermer
-    // piste : créer un clone de la carte initialement sélectionée et l'ajouter au dom à la fermeture
-    const [firstCardClicked, setFirstCardClicked] = useState()
-
-    const handleFirstCardClicked = (value) => {
-        setFirstCardClicked(value)
-    }
-
-    //
-    //
-
     const handleCardIndexNext = () => {
         setCardIndex(cardIndex + 1)
         if(cardIndex === projets.length -1){
@@ -99,50 +86,38 @@ function isIOS() {
         }
     }
 
-    const cardRef = useRef(null);
-
     const handleCardOpen = () => {  
         centerCardOnSliderXAxis()
         setTimeout(() => {
             handleFirstCardClicked(index)
         slider.current.style.overflowX = "hidden"
-        // enlarge the card and place it at the start of the X axis
         cardRef.current.classList.remove(`${styles.cardClosing}`)
-        // cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start' });
         cardRef.current.classList.add(`${styles.cardOpen}`)            
         setTimeout(() => {
             if( !isDesktop && main && header){
-                
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)" 
-                    console.log('is not desktop')
-                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
-                    main.style.transform = "translateY(-10vh)"
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
+                    main.style.transform = "translateY(-9vh)"
+
                     header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     header.style.transform = "translateY(-10vh)"    
             }
-        },250);  
-        }, timeOutDuration);
-        
-           
+        },500);  
+        }, timeOutDuration);      
     }   
 
     const handleCardClose = (event) => {
-        console.log('fermeture')
-
             if (!isDesktop && main && header) {
-                
                     main.style.height = "78vh"
-                main.style.height = "calc(var(--vh, 1vh) * 78)" 
+                    main.style.height = "calc(var(--vh, 1vh) * 78)" 
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
                     main.style.transform = "translateY(0vh)"
                     header.style.borderBottom = "1px solid white"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
                     header.style.transform = "translateY(0vh)"
-                
             }      
-            
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
@@ -153,10 +128,6 @@ function isIOS() {
         // wait for the animation to finish before allowing user to scroll on the slider
         setTimeout(() => {
             if (slider.current) {
-                // slider.current.scrollTo({
-                //     left: 2000,
-                //     behavior: 'smooth'
-                //   });
                 slider.current.style.overflowX = "scroll"
             }
         }, 750)

@@ -1,83 +1,30 @@
-import React, {useRef, useEffect} from 'react';
-import styles from './component.module.css'
-import Image from 'next/image';
-import arrow from '../../public/fleche.png'
-;
+import React, {useRef, useState, useEffect} from 'react';
+import styles from './component.module.css';
 import Card from '../Card/Card';
 
 
 const Gallery = ({projets}) => {
-    const sliderRef = useRef(null);
 
+  const sliderRef = useRef(null)
 
-    useEffect(() => {
-      const slider = sliderRef.current;
-  
-      const handleScroll = () => {
-        const scrollPosition = slider.scrollLeft + slider.offsetWidth / 2; // Calculate the scroll position relative to the middle of the slider
-        const slides = Array.from(slider.getElementsByClassName('slide'));
-  
-        for (let i = 0; i < slides.length; i++) {
-          const slide = slides[i];
-          const slidePosition = slide.offsetLeft + slide.offsetWidth / 2; // Calculate the position of the slide's middle
-  
-          if (Math.abs(slidePosition - scrollPosition) < slider.offsetWidth / 2) {
-            // console.log('Currently visible slide:', slide.id);
-          }
-        }
-      };
-  
-      slider.addEventListener('scroll', handleScroll);
-      return () => {
-        slider.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
+  const handleWheelScroll = (event) => {
+      // Access the underlying DOM element using the useRef hook
+      const slider = sliderRef.current
+      // Change the scroll behavior to "smooth"
+      slider.style.scrollBehavior = 'smooth'
+      // Calculate the scroll amount based on the event's delta
+      const scrollAmount = event.deltaY > 0 ? slider.offsetWidth : -slider.offsetWidth
+      // Scroll the gallery
+      slider.scrollLeft += scrollAmount
+  }
 
-    
-
-    
-    const handleScroll = (event) => {
-      const scrollSpeed = 6
-      slider.scrollLeft += event.deltaY * scrollSpeed
-    }
-
-
-
-    return (
-        <main className={styles.main} id='galleryContainer'>
-            <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(e)=>handleScroll(event)}>
-
-            {projets.map((projet, index) => <Card projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
-
-            </section>
-
-            {/* <div className={styles.arrowContainer}>
-              <button className={styles.arrowButton}>
-                <Image
-                    className={styles.arrowReverse}
-                    src={arrow}
-                    width={75}
-                    height={75}
-                    alt="arrow icon"
-                 />
-              </button>
-
-              <h1 className={styles.projectTitle}>Titre du projet</h1>
-
-              <button className={styles.arrowButton}>
-                <Image
-                    src={arrow}
-                    width={75}
-                    height={75}
-                    alt="arrow icon"
-                 />
-              </button>
-                 
-                 
-            </div> */}
-            
-        </main>
-    );
-};
+  return (
+    <main className={styles.main} id='galleryContainer'>
+      <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(event)=>handleWheelScroll(event)}>
+        {projets.map((projet, index) => <Card projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
+      </section>            
+    </main>
+    )
+}
 
 export default Gallery;

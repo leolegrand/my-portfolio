@@ -1,11 +1,7 @@
-.main{
-    
+.main {
     position: relative;
-
     height: 100%;
-
     transition: border 1s;
-
 } 
 
 .title {
@@ -15,21 +11,15 @@
 }
 
 .gallery {
-
-    /* Slider */
     overflow-x: scroll;
     scroll-behavior:smooth;
     scroll-snap-type: x mandatory;
-
     height: 100%;
     width: 100%;
-
     display: flex;
     align-items: center;
     gap: 50px;
     padding: 0 150px;
-
-
     perspective: 800px;
 
 }
@@ -39,7 +29,6 @@
     display: none; 
 }
 
-
 @keyframes slide {
     from{
         translate: -200%;
@@ -48,12 +37,8 @@
     }
 }
 
-
 .arrowContainer {
-
-
     width: 100%;
-
     display: none;
     justify-content: space-between;
 }
@@ -66,6 +51,7 @@
 }
 
 @media (min-width: 850px) {
+
     .arrowContainer {
         display: flex;
         align-items: center;
@@ -74,36 +60,18 @@
         border-top: 1px solid white;
     }
 
-    
-
     .main {
-        height: 91vh; /* Fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 91);
-     
-     
+        height: 90vh;
+        height: calc(var(--vh, 1vh) * 90);
         border-bottom: none;
     }
 
     .gallery{
-        flex-direction: column;
         height: 100%;
     }
 
 }
 
-.projectTitle {
-    display: grid;
-    place-items: center;
-
-    height: 100%;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    width: 33%;
-}
-
-.arrowReverse {
-    rotate: 180deg;
-}
 
 
 
