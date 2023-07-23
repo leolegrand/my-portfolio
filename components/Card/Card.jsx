@@ -9,6 +9,23 @@ import useMediaQuery from '@/hook/useMediaQuery';
 
 const Card = ({projets, index, slider}) => {
 
+    // Function to check if the user is on an iOS device
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  
+  // Example usage:
+  if (isIOS()) {
+    // Code to run if the user is on an iOS device
+    console.log("This is an iOS device.");
+    slider.current.style.gap = "75px"
+    // height doit être 65%
+    // width doit être 75vw
+  } else {
+    // Code to run for other devices (non-iOS)
+    console.log("This is not an iOS device.");
+  }
+
     const isDesktop = useMediaQuery('(min-width: 850px)')
 
     let timeOutDuration = null 

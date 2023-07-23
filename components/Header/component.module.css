@@ -9,7 +9,7 @@
     height: calc(var(--vh, 1vh) * 10);
     padding: 1em ;
     z-index: 3;
-    transition: transform 300ms;
+    transition: transform 500ms;
 
     border-bottom: 1px solid white;
 }

@@ -22,7 +22,7 @@ const Gallery = ({projets}) => {
           const slidePosition = slide.offsetLeft + slide.offsetWidth / 2; // Calculate the position of the slide's middle
   
           if (Math.abs(slidePosition - scrollPosition) < slider.offsetWidth / 2) {
-            console.log('Currently visible slide:', slide.id);
+            // console.log('Currently visible slide:', slide.id);
           }
         }
       };
