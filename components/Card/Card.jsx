@@ -72,19 +72,33 @@ const Card = ({projets, index, slider}) => {
         }       
     }
     
-    const handleCardIndexNext = () => {
-        setCardIndex(cardIndex + 1)
-        if(cardIndex === projets.length -1){
-            setCardIndex(0)
-        }
-    }
+    // const handleCardIndexNext = () => {
+    //     setCardIndex(cardIndex + 1)
+    //     if(cardIndex === projets.length -1){
+    //         setCardIndex(0)
+    //     }
+    // }
 
-    const handleCardIndexPrevious = () => {
-        setCardIndex(cardIndex - 1)
-        if(cardIndex === 0){
-            setCardIndex(projets.length -1)
-        }
-    }
+    // const handleCardIndexPrevious = () => {
+    //     setCardIndex(cardIndex - 1)
+    //     if(cardIndex === 0){
+    //         setCardIndex(projets.length -1)
+    //     }
+    // }
+
+    const handleCardIndexNext = () => {
+        setCardIndex((prevIndex) => {
+          const newIndex = prevIndex + 1;
+          return newIndex >= projets.length ? 0 : newIndex;
+        });
+      };
+      
+      const handleCardIndexPrevious = () => {
+        setCardIndex((prevIndex) => {
+          const newIndex = prevIndex - 1;
+          return newIndex < 0 ? projets.length - 1 : newIndex;
+        });
+      };
 
     const handleCardOpen = () => {  
         centerCardOnSliderXAxis()
@@ -96,10 +110,10 @@ const Card = ({projets, index, slider}) => {
         setTimeout(() => {
             if( !isDesktop && main && header){
                     main.style.height = "100vh"
-                    main.style.height = "calc(var(--vh, 1vh) * 100)" 
+                    main.style.height = "calc(var(--vh, 1vh) * 100)"
+                    // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
                     main.style.transform = "translateY(-9vh)"
-
                     header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     header.style.transform = "translateY(-10vh)"    
