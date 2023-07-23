@@ -10,6 +10,8 @@
     padding: 1em ;
     z-index: 3;
     transition: transform 300ms;
+
+    border-bottom: 1px solid white;
 }
 
 .nameContainer {

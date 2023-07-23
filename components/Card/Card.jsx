@@ -5,13 +5,49 @@ import styles from "./component.module.css"
 import Image from 'next/image';
 import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
+import useMediaQuery from '@/hook/useMediaQuery';
 
 const Card = ({projets, index, slider}) => {
+
+    const isDesktop = useMediaQuery('(min-width: 850px)')
+
+    let timeOutDuration = null 
+
+
+    const centerCardOnSliderXAxis = () => {
+        // Get map coordinates
+        const cardRect = cardRef.current.getBoundingClientRect()
+        // Get slider coordinates
+        const sliderRect = slider.current.getBoundingClientRect();
+        
+        // Calculate the horizontal distance between the centers of 'cardRect' and 'sliderRect'
+        const offset =
+        cardRect.left +
+        cardRect.width / 2 -
+        sliderRect.left -
+        sliderRect.width / 2;
+
+        // Only scroll if the card is not already centered
+        if (Math.abs(offset) > 1) {
+            console.log('350')
+            timeOutDuration = 350
+            slider.current.scrollBy({
+                left: offset,
+                behavior: 'smooth',
+            });
+        } else {
+            console.log('0')
+            timeOutDuration = 0
+        }       
+    }
     
+
         // const header =  document.querySelector('#header') 
         // const navigation = document.querySelector('#navigation')
         // const main = document.querySelector("#main")
         // const galleryContainer = document.querySelector('#galleryContainer')
+
+    const isMobile = useMediaQuery('')
 
     const [cardIndex, setCardIndex] = useState(index)
 
@@ -45,66 +81,53 @@ const Card = ({projets, index, slider}) => {
     const cardRef = useRef(null);
 
     const handleCardOpen = () => {  
-
-        handleFirstCardClicked(index)
+        centerCardOnSliderXAxis()
+        setTimeout(() => {
+            handleFirstCardClicked(index)
         slider.current.style.overflowX = "hidden"
         // enlarge the card and place it at the start of the X axis
         cardRef.current.classList.remove(`${styles.cardClosing}`)
-        cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start' });
-        cardRef.current.classList.add(`${styles.cardOpen}`)
-            // forbide user to scroll on the slider
-            
-            setTimeout(() => {
-                if(main && header && navigation && galleryContainer){
-
+        // cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        cardRef.current.classList.add(`${styles.cardOpen}`)            
+        setTimeout(() => {
+            if( !isDesktop && main && header){
+                
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)" 
-
+                    console.log('is not desktop')
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     main.style.transform = "translateY(-10vh)"
-
-                    galleryContainer.style.borderTop = "none"
-                    galleryContainer.style.borderBottom = "none"
-
+                    header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
-                    header.style.transform = "translateY(-10vh)"
+                    header.style.transform = "translateY(-10vh)"    
             }
-        },250);
-            
-                    
-            
-            
+        },250);  
+        }, timeOutDuration);
+        
+           
     }   
 
     const handleCardClose = (event) => {
+        console.log('fermeture')
 
-            if (main && header) {
-                // Access and manipulate the DOM element here
+            if (!isDesktop && main && header) {
+                
                     main.style.height = "78vh"
-                    main.style.height = "calc(var(--vh, 1vh) * 78)" 
-    
+                main.style.height = "calc(var(--vh, 1vh) * 78)" 
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
                     main.style.transform = "translateY(0vh)"
-    
-                    galleryContainer.style.borderTop = "1px solid white"
-                    galleryContainer.style.borderBottom = "1px solid white"
-    
+                    header.style.borderBottom = "1px solid white"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
                     header.style.transform = "translateY(0vh)"
-    
-                    main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
-                    main.style.transform = "translateY(0vh)"
-            }
-
-        
-
-
+                
+            }      
+            
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
         // shrink the card and place it at the center of the X axis
         cardRef.current.classList.remove(`${styles.cardOpen}`)
-        cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        // cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'center' });
         cardRef.current.classList.add(`${styles.cardClosing}`)
         // wait for the animation to finish before allowing user to scroll on the slider
         setTimeout(() => {
@@ -121,7 +144,7 @@ const Card = ({projets, index, slider}) => {
     const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
     
     return (
-            <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
+        <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
             <div className={styles.front}>
                 <div className={styles.header}>
                     <p className={styles.title}>{projets[cardIndex].title}</p>
@@ -183,6 +206,7 @@ const Card = ({projets, index, slider}) => {
                 </div>
             </div>
         </article>
+            
     );
 };
 
