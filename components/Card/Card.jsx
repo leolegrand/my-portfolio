@@ -32,8 +32,7 @@ const Card = ({projets, index, slider}) => {
             console.log('350')
             timeOutDuration = 350
             slider.current.scrollBy({
-                left: offset,
-                behavior: 'smooth',
+                left: offset
             });
         } else {
             console.log('0')
