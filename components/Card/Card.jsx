@@ -9,11 +9,7 @@ import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
 import useMediaQuery from '@/hook/useMediaQuery';
 
-const Card = ({ios, projets, index, slider}) => {
-
-    if(ios === true){
-        console.log("iphon")
-    }
+const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) => {
 
     // =============== TO-DO // PAS URGENT ============= //
     // 1. Lorsqu'une carte est sélectionnée, et si l'index de la carte fermée n'est pas === à celui de la carte ouverte
@@ -91,7 +87,8 @@ const Card = ({ios, projets, index, slider}) => {
         });
       };
 
-    const handleCardOpen = () => {  
+    const handleCardOpen = () => {
+        scrollStateHandler()  
         centerCardOnSliderXAxis()
         
         
@@ -147,6 +144,7 @@ const Card = ({ios, projets, index, slider}) => {
         // wait for the animation to finish before allowing user to scroll on the slider
         setTimeout(() => {
             if (slider.current) {
+                scrollStateHandler() 
                 slider.current.style.overflowX = "scroll"
             }
         }, 750)

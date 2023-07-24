@@ -38,17 +38,23 @@ const Gallery = ({projets}) => {
 
   const sliderRef = useRef(null)
 
-  
+  const [scrollState, setScrollState] = useState(true)
+
+  const handleScrollState = () => {
+    setScrollState(!scrollState)
+  }
 
   const handleWheelScroll = (event) => {
-      // Access the underlying DOM element using the useRef hook
-      const slider = sliderRef.current
-      // Change the scroll behavior to "smooth"
-      slider.style.scrollBehavior = 'smooth'
-      // Calculate the scroll amount based on the event's delta
-      const scrollAmount = event.deltaY > 0 ? slider.offsetWidth : -slider.offsetWidth
-      // Scroll the gallery
-      slider.scrollLeft += scrollAmount
+    if(!scrollState){
+      return
+    }
+    const slider = sliderRef.current;
+  const scrollStep = 300; // Adjust this value to control the scroll speed
+
+  // Calculate the scroll direction based on the event's delta
+  const scrollDirection = event.deltaY > 0 ? 1 : -1;
+  // Scroll the gallery by a fixed amount
+  slider.scrollLeft += scrollStep * scrollDirection;
   }
   
 
@@ -56,7 +62,17 @@ const Gallery = ({projets}) => {
   return (
     <main className={styles.main} id='galleryContainer'>
       <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(event)=>handleWheelScroll(event)}>
-        {projets.map((projet, index) => <Card ios={isOnIOs} projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
+        {projets.map((projet, index) => 
+        <Card
+          ios={isOnIOs}
+          projets={projets}
+          projet={projet}
+          index={index}
+          key={index}
+          slider={sliderRef}
+          scrollState={scrollState}
+          scrollStateHandler={handleScrollState}
+        />)}
       </section>            
     </main>
     )
