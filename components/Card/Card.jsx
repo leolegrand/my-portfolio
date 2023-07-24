@@ -9,7 +9,11 @@ import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
 import useMediaQuery from '@/hook/useMediaQuery';
 
-const Card = ({projets, index, slider}) => {
+const Card = ({ios, projets, index, slider}) => {
+
+    if(ios === true){
+        console.log("iphon")
+    }
 
     // =============== TO-DO // PAS URGENT ============= //
     // 1. Lorsqu'une carte est sélectionnée, et si l'index de la carte fermée n'est pas === à celui de la carte ouverte
@@ -18,7 +22,7 @@ const Card = ({projets, index, slider}) => {
     // 2. Le slider a un souci avec la propriété CSS "perspective" qui bouge de gauche à droite toutes les cartes lors des animations.
     //    piste : englober les cartes dans un container en "transform-style: preserve-3d"
     // ===============  =================  ============= //
-    
+
     const isDesktop = useMediaQuery('(min-width: 850px)')
 
     const [cardIndex, setCardIndex] = useState(index)
@@ -130,7 +134,12 @@ const Card = ({projets, index, slider}) => {
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
-        slider.current.style.gap = "50px"  
+        if(ios){
+            slider.current.style.gap = "75px"  
+        } else {
+            slider.current.style.gap = "50px"  
+        }
+        
         // shrink the card and place it at the center of the X axis
         cardRef.current.classList.remove(`${styles.cardOpen}`)
         // cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'center' });

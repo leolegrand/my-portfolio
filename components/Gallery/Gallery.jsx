@@ -5,6 +5,8 @@ import Card from '../Card/Card';
 
 const Gallery = ({projets}) => {
 
+  const [isOnIOs, setIsOnIOs] = useState()
+
        // =============== iOS fix  =============== //
 
     // Check if the user is on an iOS device
@@ -20,8 +22,11 @@ const Gallery = ({projets}) => {
       // If user is on an iOS device, adjust the slider layout
       // to show only one card at the center of the screen
       if (sliderRef.current) {
+        setIsOnIOs(true)
         sliderRef.current.style.gap = "75px";
       }
+    } else {
+      setIsOnIOs(false)
     }
 
     // Optionally, you can perform cleanup code here if needed
@@ -51,7 +56,7 @@ const Gallery = ({projets}) => {
   return (
     <main className={styles.main} id='galleryContainer'>
       <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(event)=>handleWheelScroll(event)}>
-        {projets.map((projet, index) => <Card projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
+        {projets.map((projet, index) => <Card ios={isOnIOs} projets={projets} projet={projet} index={index} key={index} slider={sliderRef}/>)}
       </section>            
     </main>
     )
