@@ -30,23 +30,7 @@ const Card = ({projets, index, slider}) => {
 
     let timeOutDuration = 0
 
-    // =============== iOS fix  =============== //
-
-    // Check if the user is on an iOS device
-    const isIOS = () => {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
-    
-    if (isIOS()) {
-        // If user is on iOS device we have to adjust the slider layout,
-        // the user can only see ONE CARD at the center of the screen and no parts of the cart of the left and right cards
-        // If not, the user can trigger scrollBy & scrollIntoView JS function that are broken on iOS devices, we dont want that to happen.
-        if(slider.current){
-            slider.current.style.gap = "75px"
-        }
-    } 
-
-    // =============== =============== //
+ 
 
     const centerCardOnSliderXAxis = () => {
         // Get map coordinates
@@ -102,13 +86,15 @@ const Card = ({projets, index, slider}) => {
 
     const handleCardOpen = () => {  
         centerCardOnSliderXAxis()
+        
         setTimeout(() => {
             handleFirstCardClicked(index)
-        slider.current.style.overflowX = "hidden"
-        cardRef.current.classList.remove(`${styles.cardClosing}`)
-        cardRef.current.classList.add(`${styles.cardOpen}`)            
-        setTimeout(() => {
-            if( !isDesktop && main && header){
+            slider.current.style.overflowX = "hidden"
+            cardRef.current.classList.remove(`${styles.cardClosing}`)
+            cardRef.current.classList.add(`${styles.cardOpen}`)            
+            setTimeout(() => {
+                if( !isDesktop && main && header){
+                    
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)"
                     // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
@@ -117,8 +103,8 @@ const Card = ({projets, index, slider}) => {
                     header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     header.style.transform = "translateY(-10vh)"    
-            }
-        },500);  
+                }
+            },500);  
         }, timeOutDuration);      
     }   
 
@@ -150,7 +136,7 @@ const Card = ({projets, index, slider}) => {
     const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
     
     return (
-        <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
+            <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
             <div className={styles.front}>
                 <div className={styles.header}>
                     <p className={styles.title}>{projets[cardIndex].title}</p>
@@ -212,6 +198,7 @@ const Card = ({projets, index, slider}) => {
                 </div>
             </div>
         </article>
+        
             
     );
 };

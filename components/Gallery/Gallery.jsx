@@ -5,7 +5,35 @@ import Card from '../Card/Card';
 
 const Gallery = ({projets}) => {
 
+       // =============== iOS fix  =============== //
+
+    // Check if the user is on an iOS device
+    const isIOS = () => {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+  
+  // =============== =============== //
+  
+  useEffect(() => {
+    // This code will run when the component mounts
+    if (isIOS()) {
+      // If user is on an iOS device, adjust the slider layout
+      // to show only one card at the center of the screen
+      if (sliderRef.current) {
+        sliderRef.current.style.gap = "75px";
+      }
+    }
+
+    // Optionally, you can perform cleanup code here if needed
+    return () => {
+      // This code will run when the component unmounts
+      // (e.g., to clean up any subscriptions or timers)
+    };
+  }, []); // The empty dependency array [] ensures that the effect runs only once when the component mounts
+
   const sliderRef = useRef(null)
+
+  
 
   const handleWheelScroll = (event) => {
       // Access the underlying DOM element using the useRef hook
@@ -17,6 +45,8 @@ const Gallery = ({projets}) => {
       // Scroll the gallery
       slider.scrollLeft += scrollAmount
   }
+  
+
 
   return (
     <main className={styles.main} id='galleryContainer'>
