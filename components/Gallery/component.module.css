@@ -20,7 +20,8 @@
     align-items: center;
     gap: 50px;
     padding: 0 150px;
-    perspective: 800px;
+    perspective: 15000px;
+    transition: 500ms;
 
 }
 

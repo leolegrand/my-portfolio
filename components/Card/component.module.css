@@ -116,30 +116,28 @@
     }
 }
 
- /* @keyframes cardClosingDesktop {
+ @keyframes cardClosingDesktop {
 
     0%{
         transform: rotateY(180deg);
         border-radius: 0;
         border: 0;
-        min-width: 100vw ;
-        height: 100%; 
+        border-radius: 0px;
+        min-width: 75vw;
+        height: 90%;
     }
-    50% {
-        transform: rotateY(180deg);
-        height: 75%;
-        aspect-ratio: 1/1;
-        min-width: 50vw;
-         border-radius: 16px;
-         border: 2px solid white;
-    }
+
     
     100%{
+        height: 66%;
+        min-width: 42vh;
+        border-radius: 16px;
+         border: 1px solid white;
         transform: rotateY(360deg);
         
     }
 
-} */
+}
 
 
 .front {

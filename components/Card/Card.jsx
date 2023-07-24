@@ -11,11 +11,14 @@ import useMediaQuery from '@/hook/useMediaQuery';
 
 const Card = ({projets, index, slider}) => {
 
-    // pas urgent
-    // bug fixes : empêche la carte sélectionnée initialement d'être supprimée si une autre carte est affiché lors de la fermeture (son dom étant remplacé)
-    // problématique : lors de l'animation de fermeture on voit la mauvaise carte se refermer
-    // piste : créer un clone de la carte initialement sélectionée et l'ajouter au dom à la fermeture
+    // =============== TO-DO // PAS URGENT ============= //
+    // 1. Lorsqu'une carte est sélectionnée, et si l'index de la carte fermée n'est pas === à celui de la carte ouverte
+    //    => créer un clône de la carte ouverte et l'ajouter au DOM à la fermeture 
 
+    // 2. Le slider a un souci avec la propriété CSS "perspective" qui bouge de gauche à droite toutes les cartes lors des animations.
+    //    piste : englober les cartes dans un container en "transform-style: preserve-3d"
+    // ===============  =================  ============= //
+    
     const isDesktop = useMediaQuery('(min-width: 850px)')
 
     const [cardIndex, setCardIndex] = useState(index)
@@ -87,11 +90,16 @@ const Card = ({projets, index, slider}) => {
     const handleCardOpen = () => {  
         centerCardOnSliderXAxis()
         
+        
         setTimeout(() => {
             handleFirstCardClicked(index)
-            slider.current.style.overflowX = "hidden"
+            
+            slider.current.style.gap = "150px" 
             cardRef.current.classList.remove(`${styles.cardClosing}`)
-            cardRef.current.classList.add(`${styles.cardOpen}`)            
+            cardRef.current.classList.add(`${styles.cardOpen}`)   
+        
+            slider.current.style.overflowX = "hidden"
+                  
             setTimeout(() => {
                 if( !isDesktop && main && header){
                     
@@ -100,6 +108,7 @@ const Card = ({projets, index, slider}) => {
                     // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
                     main.style.transform = "translateY(-9vh)"
+                    
                     header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     header.style.transform = "translateY(-10vh)"    
@@ -121,6 +130,7 @@ const Card = ({projets, index, slider}) => {
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
+        slider.current.style.gap = "50px"  
         // shrink the card and place it at the center of the X axis
         cardRef.current.classList.remove(`${styles.cardOpen}`)
         // cardRef.current.scrollIntoView({ behavior: 'smooth', inline: 'center' });
