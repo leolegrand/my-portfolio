@@ -4,6 +4,7 @@
     transition: transform 300ms;
 
     border-top: 1px solid white;
+    transition: transform 400ms;
 }
 
 .list {

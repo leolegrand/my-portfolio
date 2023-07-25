@@ -66,35 +66,19 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
         }       
     }
     
-    // const handleCardIndexNext = () => {
-    //     setCardIndex(cardIndex + 1)
-    //     if(cardIndex === projets.length -1){
-    //         setCardIndex(0)
-    //     }
-    // }
-
-    // const handleCardIndexPrevious = () => {
-    //     setCardIndex(cardIndex - 1)
-    //     if(cardIndex === 0){
-    //         setCardIndex(projets.length -1)
-    //     }
-    // }
-
     const handleCardIndexNext = () => {
-        cardBack.current.classList.add(`${styles.fadeIn}`)
-        setCardIndex((prevIndex) => {
-          const newIndex = prevIndex + 1;
-          return newIndex >= projets.length ? 0 : newIndex;
-        });
-      };
-      
-      const handleCardIndexPrevious = () => {
-        cardBack.current.classList.add(`${styles.fadeIn}`)
-        setCardIndex((prevIndex) => {
-          const newIndex = prevIndex - 1;
-          return newIndex < 0 ? projets.length - 1 : newIndex;
-        });
-      };
+        setCardIndex(cardIndex + 1)
+        if(cardIndex === projets.length -1){
+            setCardIndex(0)
+        }
+    }
+
+    const handleCardIndexPrevious = () => {
+        setCardIndex(cardIndex - 1)
+        if(cardIndex === 0){
+            setCardIndex(projets.length -1)
+        }
+    }
 
     const handleCardOpen = () => {
         scrollStateHandler()  
@@ -104,25 +88,26 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
         setTimeout(() => {
             handleFirstCardClicked(index)
             
-            slider.current.style.gap = "150px" 
-            cardRef.current.classList.remove(`${styles.cardClosing}`)
-            cardRef.current.classList.add(`${styles.cardOpen}`)   
-        
             slider.current.style.overflowX = "hidden"
-            
-                  
+            slider.current.style.gap = "150px" 
+
+            cardRef.current.classList.remove(`${styles.cardClosing}`)
+            cardRef.current.classList.add(`${styles.cardOpen}`)
+
+            if(!isDesktop){
+                navbar.style.transform = "translateY(calc(var(--vh, 1vh) * 12)" 
+                navbar.style.transform = "translateY(12vh)" 
+                header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
+                header.style.transform = "translateY(-10vh)"
+            }
+
             setTimeout(() => {
-                if( !isDesktop && main && header){
-                    
+                if( !isDesktop){
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)"
                     // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
-                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
-                    main.style.transform = "translateY(-9vh)"
-                    
-                    header.style.borderBottom = "none"
-                    header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
-                    header.style.transform = "translateY(-10vh)"    
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
+                    main.style.transform = "translateY(-10vh)" 
                 }
                 cardBack.current.classList.add(`${styles.fadeIn}`)
             },500);  
@@ -130,7 +115,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }   
 
     const handleCardClose = (event) => {
-            if (!isDesktop && main && header) {
+            if (!isDesktop && main && header && navbar) {
                     main.style.height = "78vh"
                     main.style.height = "calc(var(--vh, 1vh) * 78)" 
                     main.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
@@ -138,6 +123,9 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     header.style.borderBottom = "1px solid white"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * 0)"
                     header.style.transform = "translateY(0vh)"
+
+                    navbar.style.transform = "translateY(calc(var(--vh, 1vh) * 0)" 
+                    navbar.style.transform = "translateY(0vh)" 
             }      
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener

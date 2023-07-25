@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 const Navigation = () => {
     const pathname = usePathname()
     return (
-        <footer className={styles.navigation} id='navigation'>
+        <footer className={styles.navigation} id='navbar'>
             <ul className={styles.list}>
                 <li className={ pathname === "/About" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/About">About</Link></li>
                 <li className={ pathname === "/Works" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/Works">Portfolio</Link></li>
