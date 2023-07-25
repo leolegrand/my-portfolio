@@ -66,17 +66,33 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
         }       
     }
     
+    // const handleCardIndexNext = () => {
+    //     setCardIndex(cardIndex + 1)
+    //     if(cardIndex === projets.length -1){
+    //         setCardIndex(0)
+    //     }
+    // }
+
+    // const handleCardIndexPrevious = () => {
+    //     setCardIndex(cardIndex - 1)
+    //     if(cardIndex === 0){
+    //         setCardIndex(projets.length -1)
+    //     }
+    // }
+
     const handleCardIndexNext = () => {
-        setCardIndex(cardIndex + 1)
-        if(cardIndex === projets.length -1){
+        if(cardIndex === projets.length - 1){
             setCardIndex(0)
+        } else {
+            setCardIndex(cardIndex + 1)
         }
     }
 
     const handleCardIndexPrevious = () => {
-        setCardIndex(cardIndex - 1)
         if(cardIndex === 0){
             setCardIndex(projets.length -1)
+        } else {
+            setCardIndex(cardIndex - 1)
         }
     }
 
