@@ -77,6 +77,12 @@
     }
 }
 
+@media (min-width: 850px) {
+    .header{
+        padding: 1rem 13vw;
+    }
+}
+
 .buttonsContainer {
     display: flex;
     align-items: center;

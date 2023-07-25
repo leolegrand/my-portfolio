@@ -101,6 +101,7 @@
 }
 
 .titleBack {
+    white-space: nowrap;
     font-size: 1.5rem;
 
 }
@@ -112,8 +113,21 @@
 }
 
 .closeButton {
+    height: 100%;
+    aspect-ratio: 1/1;
     cursor: pointer;
+    transition: 1s;
 }
+
+.closeButton img {
+    opacity: 1;
+    object-fit: contain;
+    max-height: 100%;
+    transition: 600ms;
+}
+
+
+
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .description::-webkit-scrollbar, .gallery::-webkit-scrollbar {
@@ -164,7 +178,7 @@
 
 .links {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     width: 50%;
     height: 100%;
@@ -172,7 +186,21 @@
 }
 
 .links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     cursor: pointer;
+}
+
+.links img {
+    height: 40%;
+    object-fit: contain;
+    
+}
+
+.linkDemo:hover::after {
+    opacity: 1;
 }
 
 .description {
@@ -181,18 +209,6 @@
     overflow: scroll;
     padding: 1rem;
 }
-
-/* FADE OUT */
-/* .description::after{
-    content: "";
-    position: fixed;
-    width: 100vw;
-    bottom: 10%;
-    height: 5%;
-    left: 0;
-    background: rgba(255, 255, 255, 0.9);
-    filter: blur(20px);
-} */
 
 .footer {
     border-top: 1px solid white;
@@ -238,7 +254,7 @@
 }
 
 .fadeIn {
-    animation: opacityIn 1250ms ease-in-out forwards;
+    animation: opacityIn  750ms 400ms ease-in-out forwards;
 }
 
 
@@ -351,4 +367,80 @@
     .cardClosing {
         animation: cardClosingDesktop 1s ease-in-out forwards;
     }
+    .linkGit {
+        position: relative;
+    }
+    
+    .linkGit::after{
+        opacity: 0;
+        content: "Github";
+        position: absolute;
+        right: -23px;
+        color: white;
+        transition: 500ms;
+        
+    }
+
+    .linkGit img {
+        transition: 1s;
+    }
+
+    .linkGit:hover img{
+        scale: .9;
+        opacity: .5;
+    }
+    
+    .linkGit:hover::after {
+        opacity: 1;
+    }
+    
+    .linkDemo {
+        position: relative;
+    }
+
+    .linkDemo img {
+        transition: 1s;
+    }
+
+    .linkDemo:hover img{
+        scale: .9;
+        opacity: .5;
+    }
+    
+    .linkDemo::after{
+        opacity: 0;
+        content: "Online demo";
+        position: absolute;
+        left: -70px;
+        color: white;
+        transition: 500ms;
+        
+    }
+
+    .closeButton::after {
+        transition: 500ms;
+        position: absolute;
+        content: "Fermer || Close";
+        color: white;
+        left: -135px;
+        top: 25%;
+        opacity: 0;
+    }
+    
+    .closeButton {
+        position: relative;
+    }
+
+    .closeButton:hover::after{
+        opacity: 1;
+    }
+   
+    .closeButton img{
+        transition: 1s;
+    }
+    .closeButton:hover img{
+        opacity: .5;
+        scale: .9;
+    }
+
 }

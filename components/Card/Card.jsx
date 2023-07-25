@@ -7,6 +7,9 @@ import styles from "./component.module.css"
 import Image from 'next/image';
 import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
+import git from "@/public/github.png"
+import demo from "@/public/domaine.png"
+
 import useMediaQuery from '@/hook/useMediaQuery';
 
 const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) => {
@@ -54,7 +57,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
 
         // Only scroll if the card is not already centered
         if (Math.abs(offset) > 1) {
-            timeOutDuration = 350
+            timeOutDuration = 600
             slider.current.scrollBy({
                 left: offset
             });
@@ -78,6 +81,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     // }
 
     const handleCardIndexNext = () => {
+        cardBack.current.classList.add(`${styles.fadeIn}`)
         setCardIndex((prevIndex) => {
           const newIndex = prevIndex + 1;
           return newIndex >= projets.length ? 0 : newIndex;
@@ -85,6 +89,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
       };
       
       const handleCardIndexPrevious = () => {
+        cardBack.current.classList.add(`${styles.fadeIn}`)
         setCardIndex((prevIndex) => {
           const newIndex = prevIndex - 1;
           return newIndex < 0 ? projets.length - 1 : newIndex;
@@ -112,8 +117,8 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)"
                     // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
-                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
-                    main.style.transform = "translateY(-9vh)"
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
+                    main.style.transform = "translateY(-10vh)"
                     
                     header.style.borderBottom = "none"
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
@@ -178,7 +183,12 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                             <h2 className={styles.titleBack}>{projets[cardIndex].title}</h2> 
                             <span className={styles.date}>{projets[cardIndex].date?.substring(0, 4)}</span>
                         </div>                  
-                        <button className={styles.closeButton} onClick={handleCardClose}>x</button>
+                        <button className={styles.closeButton} onClick={handleCardClose}>
+                            <Image
+                            src={cross}
+                            alt='closing button'
+                            />
+                        </button>
                     </div>
 
                     <div className={styles.gallery} ref={cardBackGallery}>
@@ -194,8 +204,18 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                         </ul>
                         
                         <div className={styles.links}>
-                            <a href={projets[cardIndex].githubLink}>Github</a>
-                            <a href={projets[cardIndex].liveDemoLink}>Demo</a>
+                            <a className={styles.linkGit} href={projets[cardIndex].githubLink}>
+                                <Image
+                                    src={git}
+                                    alt='github link'
+                                />
+                            </a>
+                            <a className={styles.linkDemo} href={projets[cardIndex].liveDemoLink}>
+                            <Image
+                                    src={demo}
+                                    alt='demo link'
+                                />
+                            </a>
                          </div>
                     </div>
 

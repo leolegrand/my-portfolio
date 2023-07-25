@@ -12,8 +12,7 @@ import styles from './component.module.css'
 import Logo from '@/elements/Logo/Logo';
 
 
-import paintPalette from '../../public/palette-couleur.png';
-import paintPaletteNB from '../../public/palette.png'; 
+import darkMode from '../../public/mode-sombre.png'; 
 
 
 
@@ -62,8 +61,8 @@ const Header = () => {
             </button>
             <button className={styles.theme}>
                 <Image
-                onClick={handleTheme}
-                 src={isColorfulTheme? paintPalette : paintPaletteNB}
+                    onClick={handleTheme}
+                 src={darkMode}
                  width={25}
                  height={25}
                  alt="Theme icon"
