@@ -30,6 +30,10 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }
 
     const cardRef = useRef(null);
+    const cardBack = useRef(null)
+    const cardBackHeader = useRef(null)
+    const cardBackGallery = useRef(null)
+    const cardBackDescription = useRef(null)
 
     let timeOutDuration = 0
 
@@ -100,6 +104,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
             cardRef.current.classList.add(`${styles.cardOpen}`)   
         
             slider.current.style.overflowX = "hidden"
+            
                   
             setTimeout(() => {
                 if( !isDesktop && main && header){
@@ -114,6 +119,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     header.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
                     header.style.transform = "translateY(-10vh)"    
                 }
+                cardBack.current.classList.add(`${styles.fadeIn}`)
             },500);  
         }, timeOutDuration);      
     }   
@@ -165,7 +171,53 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     <li className={styles.tag} key={index}>{categorie.title}</li>))}
                 </ul>
                 </div>
-            <div className={styles.back}>
+                <div className={styles.back} ref={cardBack}>
+
+                    <div className={styles.headerBack} ref={cardBackHeader}>
+                        <div className={styles.titleContainer}>
+                            <h2 className={styles.titleBack}>{projets[cardIndex].title}</h2> 
+                            <span className={styles.date}>{projets[cardIndex].date?.substring(0, 4)}</span>
+                        </div>                  
+                        <button className={styles.closeButton} onClick={handleCardClose}>x</button>
+                    </div>
+
+                    <div className={styles.gallery} ref={cardBackGallery}>
+                        {projetImages.map((image, index) => (
+                            <img src={image} key={index} alt='screenshot'/>))}
+                    </div>
+
+                    <div className={styles.infos}>
+                        
+                        <ul className={styles.tagsListBack}>
+                            {projets[cardIndex].categories.map((categorie, index) => (
+                                <li className={styles.tagBack} key={index}>{categorie.title}</li>))}
+                        </ul>
+                        
+                        <div className={styles.links}>
+                            <a href={projets[cardIndex].githubLink}>Github</a>
+                            <a href={projets[cardIndex].liveDemoLink}>Demo</a>
+                         </div>
+                    </div>
+
+                    <div className={styles.description} ref={cardBackDescription}>
+                        {projets[cardIndex].descriptionFrancais}
+        
+                    </div>
+
+                    <div className={styles.footer}>
+                        <button className={styles.prevButton} onClick={handleCardIndexPrevious}>previous</button>
+                        <button className={styles.nextButton} onClick={handleCardIndexNext}>next</button>
+                    </div>
+
+                </div>
+            
+        </article>
+        
+            
+    );
+};
+
+{/* <div className={styles.back}>
                 <div className={styles.Head}>
                     <h2>{projets[cardIndex].title}</h2>
                     <button className={styles.closeButton} onClick={handleCardClose}>
@@ -213,11 +265,6 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                         /> 
                     </button>
                 </div>
-            </div>
-        </article>
-        
-            
-    );
-};
+            </div> */}
 
 export default Card;
