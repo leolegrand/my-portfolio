@@ -106,8 +106,8 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     main.style.height = "100vh"
                     main.style.height = "calc(var(--vh, 1vh) * 100)"
                     // Weird gap behavior on mobile, to investigate, -10vh => -9vh seems to fix the issue on mobile devicess 
-                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -10)"
-                    main.style.transform = "translateY(-10vh)" 
+                    main.style.transform = "translateY(calc(var(--vh, 1vh) * -9)"
+                    main.style.transform = "translateY(-9vh)" 
                 }
                 cardBack.current.classList.add(`${styles.fadeIn}`)
             },500);  
