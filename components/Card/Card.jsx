@@ -165,7 +165,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     <p className={styles.title}>{projets[cardIndex].title}</p>
                     <div className={styles.separationLine}></div>
                 </div>
-                <img src={projets[cardIndex].logoUrl} alt={projets[cardIndex].title +  " logo"}/>
+                <img className={styles.logo} src={projets[cardIndex].logoUrl} alt={projets[cardIndex].title +  " logo"}/>
                 <ul className={styles.tagsList}>
                     {projets[cardIndex].categories.map((categorie, index) => (
                     <li className={styles.tag} key={index}>{categorie.title}</li>))}
@@ -205,8 +205,21 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     </div>
 
                     <div className={styles.footer}>
-                        <button className={styles.prevButton} onClick={handleCardIndexPrevious}>previous</button>
-                        <button className={styles.nextButton} onClick={handleCardIndexNext}>next</button>
+                        <button className={styles.prevButton} onClick={handleCardIndexPrevious}>
+                            <Image
+                                className={styles.arrowPrev}
+                                src={arrow}
+                                alt="arrow icon previous"
+                            />
+                           
+                        </button>
+                        <button className={styles.nextButton} onClick={handleCardIndexNext}>
+                        <Image
+                                className={styles.arrowNext}
+                                src={arrow}
+                                alt="arrow icon next"
+                            />
+                        </button>
                     </div>
 
                 </div>
