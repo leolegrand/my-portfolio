@@ -69,10 +69,12 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     const handleCardIndexNext = (event) => {
         event.stopPropagation()
         console.log('next')
+        console.log(event);
         setCardIndex((prevIndex) => (prevIndex === projets.length - 1 ? 0 : prevIndex + 1))
     }
       
       const handleCardIndexPrevious = (event) => {
+        console.log(event);
         console.log('prev')
         event.stopPropagation()
         setCardIndex((prevIndex) => (prevIndex === 0 ? projets.length - 1 : prevIndex - 1))
@@ -216,7 +218,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     </div>
 
                     <div className={styles.footer}>
-                        <button className={styles.prevButton} onClick={handleCardIndexPrevious}>
+                        <button className={styles.prevButton} onClick={e => handleCardIndexPrevious(e)}>
                             <Image
                                 className={styles.arrowPrev}
                                 src={arrow}
@@ -224,7 +226,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                             />
                            
                         </button>
-                        <button className={styles.nextButton} onClick={handleCardIndexNext}>
+                        <button className={styles.nextButton} onClick={e => handleCardIndexNext(e)}>
                         <Image
                                 className={styles.arrowNext}
                                 src={arrow}
