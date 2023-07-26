@@ -6,15 +6,12 @@ import Gallery from '@/components/Gallery/Gallery';
 import { useWindowSize } from '@/hook/useWindowSize';
 
 const Page = () => {
-
-  if(window){
-    window.screen.orientation.lock('portrait')
-  }
   
 
   const [data, setData] = useState();
 
   useEffect(() => {
+    window.screen.orientation.lock('portrait')
     // Fonction pour effectuer l'appel à l'API
     const fetchData = async () => {
 
