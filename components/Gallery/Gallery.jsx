@@ -56,6 +56,16 @@ const Gallery = ({projets}) => {
   // Scroll the gallery by a fixed amount
   slider.scrollLeft += scrollStep * scrollDirection;
   }
+
+  projets.sort((a, b) => {
+    if (a.featured && !b.featured) {
+      return -1; // a comes before b
+    } else if (!a.featured && b.featured) {
+      return 1; // b comes before a
+    } else {
+      return 0; // the order remains unchanged
+    }
+  });
   
 
 

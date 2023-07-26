@@ -42,7 +42,8 @@ const Page = () => {
           miniDescriptionEnglish,
           descriptionEnglish,
           githubLink,
-          liveDemoLink
+          liveDemoLink,
+          featured
         }`);
         setData(response);
       } catch (error) {

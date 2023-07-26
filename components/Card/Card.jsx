@@ -9,6 +9,8 @@ import arrow from '@/public/fleche.png'
 import cross from "@/public/croix.png"
 import git from "@/public/github.png"
 import demo from "@/public/domaine.png"
+import star from "@/public/ruban.png"
+
 
 import useMediaQuery from '@/hook/useMediaQuery';
 
@@ -148,16 +150,21 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }
 
     const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
+
+    console.log(projets)
     
     return (
             <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
-            <div className={styles.front}>
+            <div className={styles.front}>                
                 <div className={styles.header}>
                     <p className={styles.title}>{projets[cardIndex].title}</p>
                     <div className={styles.separationLine}></div>
+                    
                 </div>
                 <img className={styles.logo} src={projets[cardIndex].logoUrl} alt={projets[cardIndex].title +  " logo"}/>
+                
                 <div className={styles.tagsList}>
+                {projets[cardIndex].featured == true ? <div className={styles.featured}><Image src={star} alt='featured'/><p>Featured</p><Image src={star} alt='featured'/></div> : ""}
                     <p className={styles.tag}>{projets[cardIndex].date?.substring(0, 4)}</p>
                     <p className={styles.tag}>{projets[cardIndex].job}</p>
                 </div>
