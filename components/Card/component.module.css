@@ -131,15 +131,13 @@
 
 
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .description::-webkit-scrollbar, .gallery::-webkit-scrollbar {
     display: none;
 }
   
-  /* Hide scrollbar for IE, Edge and Firefox */
 .description, .gallery {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
 }
 
 .gallery {
@@ -147,7 +145,7 @@
     display: flex;
     align-items: center;
     height: 55%;
-    overflow: scroll;
+    overflow: hidden;
     scroll-behavior:smooth;
     scroll-snap-type: x mandatory;
     padding: 1rem;

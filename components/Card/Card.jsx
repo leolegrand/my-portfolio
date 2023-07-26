@@ -67,25 +67,16 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }
 
     const handleCardIndexNext = (event) => {
-        event.stopPropagation()
-        console.log('next')
-        console.log(event);
         setCardIndex((prevIndex) => (prevIndex === projets.length - 1 ? 0 : prevIndex + 1))
     }
       
       const handleCardIndexPrevious = (event) => {
-        
-        console.log('prev')
-        event.stopPropagation()
-        console.log(event);
         setCardIndex((prevIndex) => (prevIndex === 0 ? projets.length - 1 : prevIndex - 1))
     }
 
     const handleCardOpen = () => {
-        console.log('opening')
         scrollStateHandler()  
         centerCardOnSliderXAxis()
-        
         
         setTimeout(() => {
             handleFirstCardClicked(index)
@@ -95,6 +86,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
 
             cardRef.current.classList.remove(`${styles.cardClosing}`)
             cardRef.current.classList.add(`${styles.cardOpen}`)
+            cardBackGallery.current.style.overflow = "scroll"
 
             if(!isDesktop){
                 navbar.style.transform = "translateY(calc(var(--vh, 1vh) * 12)" 
@@ -118,7 +110,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }   
 
     const handleCardClose = (event) => {
-        console.log('closing')
+
             if (!isDesktop && main && header && navbar) {
                 navbar.style.display = ""
                     main.style.height = "78vh"
@@ -131,7 +123,8 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
 
                     navbar.style.transform = "translateY(calc(var(--vh, 1vh) * 0)" 
                     navbar.style.transform = "translateY(0vh)" 
-            }      
+            }
+            cardBackGallery.current.style.overflow = "hidden"      
         setCardIndex(firstCardClicked)
         // prevent to propage the click event to the card listener
         event.stopPropagation()
@@ -164,10 +157,10 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     <div className={styles.separationLine}></div>
                 </div>
                 <img className={styles.logo} src={projets[cardIndex].logoUrl} alt={projets[cardIndex].title +  " logo"}/>
-                <ul className={styles.tagsList}>
-                    {projets[cardIndex].categories.map((categorie, index) => (
-                    <li className={styles.tag} key={index}>{categorie.title}</li>))}
-                </ul>
+                <div className={styles.tagsList}>
+                    <p className={styles.tag}>{projets[cardIndex].date?.substring(0, 4)}</p>
+                    <p className={styles.tag}>{projets[cardIndex].job}</p>
+                </div>
                 </div>
                 <div className={styles.back} ref={cardBack}>
 
@@ -204,12 +197,13 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                                     alt='github link'
                                 />
                             </a>
-                            <a className={styles.linkDemo} href={projets[cardIndex].liveDemoLink}>
+                             {projets[cardIndex].liveDemoLink != null? <a className={styles.linkDemo} href={projets[cardIndex].liveDemoLink}>
                             <Image
                                     src={demo}
                                     alt='demo link'
                                 />
-                            </a>
+                            </a> : null  }
+                            
                          </div>
                     </div>
 

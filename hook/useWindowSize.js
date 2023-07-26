@@ -10,7 +10,7 @@ export function useWindowSize() {
   
     useEffect(() => {
         if (typeof window !== "undefined") {
-          window.screen.orientation.lock('portrait')
+          
             // Handler to call on window resize
       function handleResize() {
         // Set window width/height to state

@@ -58,7 +58,6 @@ const Page = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Check if running in a browser environment
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
   }, [vh]);
