@@ -75,6 +75,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }
 
     const handleCardOpen = () => {
+        console.log('opening')
         scrollStateHandler()  
         centerCardOnSliderXAxis()
         
@@ -110,6 +111,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }   
 
     const handleCardClose = (event) => {
+        console.log('closing')
             if (!isDesktop && main && header && navbar) {
                 navbar.style.display = ""
                     main.style.height = "78vh"
@@ -181,11 +183,12 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                     </div>
 
                     <div className={styles.infos}>
+                        <p className={styles.job}>{projets[cardIndex].job}</p>
                         
-                        <ul className={styles.tagsListBack}>
+                        {/* <ul className={styles.tagsListBack}>
                             {projets[cardIndex].categories.map((categorie, index) => (
                                 <li className={styles.tagBack} key={index}>{categorie.title}</li>))}
-                        </ul>
+                        </ul> */}
                         
                         <div className={styles.links}>
                             <a className={styles.linkGit} href={projets[cardIndex].githubLink}>
