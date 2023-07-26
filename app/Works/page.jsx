@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import styles from './page.module.css'
 import Gallery from '@/components/Gallery/Gallery';
 import { useWindowSize } from '@/hook/useWindowSize';
-import PortraitLock from '@/utils/PortraitLock';
 
 const Page = () => {
   
@@ -69,7 +68,6 @@ const Page = () => {
   return (
     <>
     <div className={styles.layout} id='main'> 
-      <PortraitLock />
       <Gallery projets={data}/>      
     </div> 
     </>
@@ -77,7 +75,6 @@ const Page = () => {
 } else {
   <>
   <div className={styles.layout}> 
-  <PortraitLock />
     </div>
   </>
 }
