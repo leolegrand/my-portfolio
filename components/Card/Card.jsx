@@ -66,11 +66,15 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
         }       
     }
 
-    const handleCardIndexNext = () => {
+    const handleCardIndexNext = (event) => {
+        event.stopPropagation()
+        console.log('next')
         setCardIndex((prevIndex) => (prevIndex === projets.length - 1 ? 0 : prevIndex + 1))
     }
       
-      const handleCardIndexPrevious = () => {
+      const handleCardIndexPrevious = (event) => {
+        console.log('prev')
+        event.stopPropagation()
         setCardIndex((prevIndex) => (prevIndex === 0 ? projets.length - 1 : prevIndex - 1))
     }
 
