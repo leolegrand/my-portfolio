@@ -7,6 +7,8 @@ import { useWindowSize } from '@/hook/useWindowSize';
 
 const Page = () => {
 
+  window.screen.orientation.lock('portrait')
+
   const [data, setData] = useState();
 
   useEffect(() => {
