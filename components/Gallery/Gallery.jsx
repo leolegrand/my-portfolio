@@ -57,7 +57,7 @@ const Gallery = ({projets}) => {
   slider.scrollLeft += scrollStep * scrollDirection;
   }
 
-  projets.sort((a, b) => {
+  projets?.sort((a, b) => {
     if (a.featured && !b.featured) {
       return -1; // a comes before b
     } else if (!a.featured && b.featured) {
@@ -72,7 +72,7 @@ const Gallery = ({projets}) => {
   return (
     <main className={styles.main} id='galleryContainer'>
       <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(event)=>handleWheelScroll(event)}>
-        {projets.map((projet, index) => 
+        {projets?.map((projet, index) => 
         <Card
           ios={isOnIOs}
           projets={projets}

@@ -63,6 +63,7 @@ body {
     /* background-color: #3e930d; */
     /* background-color: #9d2936; */
     background-color: #361087;
+    transition: background 1s;
 }
 
 .dark-theme {
@@ -70,7 +71,7 @@ body {
 }
 
 .colorful-theme {
-  background-color: #3e930d;
+  background-color: #361087;
 }
 
 html {

@@ -34,7 +34,6 @@ const Header = () => {
             document.body.classList.remove('colorful-theme')
             document.body.classList.add('dark-theme')
         }
-        console.log(isColorfulTheme)
     }
 
     return (

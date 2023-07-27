@@ -7,11 +7,9 @@ import { useWindowSize } from '@/hook/useWindowSize';
 
 const Page = () => {
   
-
   const [data, setData] = useState();
 
   useEffect(() => {
-    // Fonction pour effectuer l'appel à l'API
     const fetchData = async () => {
 
       const client = createClient({
@@ -64,20 +62,19 @@ const Page = () => {
   }, [vh]);
 
   
-  if(data){
+ 
   return (
-    <>
-    <div className={styles.layout} id='main'> 
-      <Gallery projets={data}/>      
-    </div> 
-    </>
-  );
-} else {
-  <>
-  <div className={styles.layout}> 
-    </div>
-  </>
-}
+
+    data ? <>
+      <div className={styles.layout} id='main'> 
+        <Gallery projets={data}/>      
+      </div> 
+      </> : <div className={styles.layout} id='main'> 
+        <Gallery />      
+      </div>  
+    
+  )
+
   
 };
 
