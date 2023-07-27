@@ -24,17 +24,17 @@ const Header = () => {
     const [isColorfulTheme, setIsColorfulTheme] = useState(false)
 
 
-    const handleTheme = () => {
-        setIsColorfulTheme(!isColorfulTheme)
-        localStorage.setItem('theme', isColorfulTheme)
-        if(isColorfulTheme){
-            document.body.classList.remove('dark-theme')
-            document.body.classList.add('colorful-theme')
-        } else {
-            document.body.classList.remove('colorful-theme')
-            document.body.classList.add('dark-theme')
-        }
-    }
+    // const handleTheme = () => {
+    //     setIsColorfulTheme(!isColorfulTheme)
+    //     localStorage.setItem('theme', isColorfulTheme)
+    //     if(isColorfulTheme){
+    //         document.body.classList.remove('dark-theme')
+    //         document.body.classList.add('colorful-theme')
+    //     } else {
+    //         document.body.classList.remove('colorful-theme')
+    //         document.body.classList.add('dark-theme')
+    //     }
+    // }
 
     return (
         <header className={styles.header} id='header'>
@@ -61,7 +61,7 @@ const Header = () => {
             </button>
             <button className={styles.theme}>
                 <Image
-                    onClick={handleTheme}
+                    // onClick={handleTheme}
                  src={darkMode}
                  width={25}
                  height={25}
