@@ -19,7 +19,7 @@ const Contact = () => {
     return (
         <main className={styles.contact}>
             <a className={styles.mail} href="mailto:leo.legrandm@gmail.com"> Contactez-moi </a>
-            <p className={styles.disclaimer}>Mon site web est en cours de développement, certaines fonctionnalités ne sont pas intégrés, buggés et les visuels ne représentent pas encore la version finale du projet</p>
+            <p className={styles.disclaimer}>Mon site web est en cours de développement, certaines fonctionnalités ne sont pas intégrées, buggées et les visuels ne représentent pas encore la version finale du projet</p>
         </main>
     );
 };

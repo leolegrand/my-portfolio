@@ -33,7 +33,7 @@ const About = () => {
 
               <a className={styles.cv} href="/cv-leo-legrand.pdf" download>Mon CV</a>
               
-              <p className={styles.disclaimer}>Mon Portfolio est en cours de développement, certaines fonctionnalités ne sont pas intégrés, buggés et les visuels ne représentent pas encore la version finale du projet</p>
+              <p className={styles.disclaimer}>Mon site web est en cours de développement, certaines fonctionnalités ne sont pas intégrées, buggées et les visuels ne représentent pas encore la version finale du projet</p>
          
          
       </main>     
