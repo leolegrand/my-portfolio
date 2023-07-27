@@ -46,7 +46,7 @@ const Header = () => {
             
             <nav className={styles.navigation}>
                 <ul className={styles.list}>
-                    <li className={ pathname === "/About" ? styles.listElementCurrent : styles.listElement}><Link href="/About">About</Link></li>
+                    <li className={ pathname === "/" ? styles.listElementCurrent : styles.listElement}><Link href="/">About</Link></li>
                     <li className={ pathname === "/Works" ?  styles.listElementCurrent : styles.listElement}><Link href="/Works">Portfolio</Link></li>
                     <li className={ pathname === "/Contact" ? styles.listElementCurrent : styles.listElement}><Link href="/Contact">Contact</Link></li>
                 </ul>

@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     gap: 50px;
-    padding: 0 50%;
+    padding: 0 25%;
     perspective: 15000px;
     transition: 500ms;
 

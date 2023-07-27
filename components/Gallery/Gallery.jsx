@@ -1,9 +1,11 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useLayoutEffect, useEffect} from 'react';
 import styles from './component.module.css';
 import Card from '../Card/Card';
 
 
 const Gallery = ({projets}) => {
+
+  const sliderRef = useRef(null)
 
   const [isOnIOs, setIsOnIOs] = useState()
 
@@ -36,8 +38,6 @@ const Gallery = ({projets}) => {
     };
   }, []); // The empty dependency array [] ensures that the effect runs only once when the component mounts
 
-  const sliderRef = useRef(null)
-
   const [scrollState, setScrollState] = useState(true)
 
   const handleScrollState = () => {
@@ -66,7 +66,6 @@ const Gallery = ({projets}) => {
       return 0; // the order remains unchanged
     }
   });
-  
 
 
   return (
