@@ -150,8 +150,6 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
     }
 
     const projetImages = projets[cardIndex].imageUrls.filter((url)=>url !== null )
-
-    console.log(projets)
     
     return (
             <article className={`${styles.card} slide`} key={index} onClick={handleCardOpen} ref={cardRef}>
