@@ -40,7 +40,8 @@ const Header = () => {
         <header className={styles.header} id='header'>
 
             <div className={styles.nameContainer}>
-                <Logo darkMode={true}/>
+            <Link href="/"><Logo darkMode={true}/></Link>
+                
                 <p className={styles.name}>Léo Legrand</p>
             </div>
             
