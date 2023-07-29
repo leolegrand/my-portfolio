@@ -14,7 +14,9 @@
 }
 
 .logoContainer svg {
-   height: 150px;
+   height: 200px;
+   width: 200px;
+   object-fit: contain;
    border-radius: 50%;
    border: 2px solid white;
 }
@@ -45,9 +47,7 @@
        height: calc(var(--vh, 1vh) * 90);
    }
 
-   .logoContainer svg {
-      height: 300px;
-   }
+   
    .title{
       font-size: 3rem;
    }

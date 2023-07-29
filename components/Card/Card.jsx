@@ -162,7 +162,7 @@ const Card = ({ios, projets, index, slider, scrollState, scrollStateHandler}) =>
                 <img className={styles.logo} src={projets[cardIndex].logoUrl} alt={projets[cardIndex].title +  " logo"}/>
                 
                 <div className={styles.tagsList}>
-                {projets[cardIndex].featured == true ? <div className={styles.featured}><Image src={star} alt='featured'/><p>Featured</p><Image src={star} alt='featured'/></div> : ""}
+                {/* {projets[cardIndex].featured == true ? <div className={styles.featured}><Image src={star} alt='featured'/><p>Featured</p><Image src={star} alt='featured'/></div> : ""} */}
                     <p className={styles.tag}>{projets[cardIndex].date?.substring(0, 4)}</p>
                     <p className={styles.tag}>{projets[cardIndex].job}</p>
                 </div>

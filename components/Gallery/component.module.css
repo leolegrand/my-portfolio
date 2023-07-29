@@ -14,21 +14,19 @@
     overflow-x: scroll;
     scroll-behavior:smooth;
     scroll-snap-type: x mandatory;
+    
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     gap: 50px;
     padding: 0 25%;
-    perspective: 15000px;
+    /* perspective: 1000px; */
     transition: 500ms;
 
 }
 
-.gallery::-webkit-scrollbar { 
-    width: 0 !important;
-    display: none; 
-}
+
 
 @keyframes slide {
     from{
@@ -73,7 +71,11 @@
 
 }
 
+@media (max-width: 850px) {
 
+.gallery::-webkit-scrollbar { 
+    width: 0 !important;
+    display: none; 
+}
 
-
-
+}

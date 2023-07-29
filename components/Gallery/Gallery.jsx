@@ -71,6 +71,7 @@ const Gallery = ({projets}) => {
   return (
     <main className={styles.main} id='galleryContainer'>
       <section className={styles.gallery} ref={sliderRef} id="slider" onWheel={(event)=>handleWheelScroll(event)}>
+      
         {projets?.map((projet, index) => 
         <Card
           ios={isOnIOs}

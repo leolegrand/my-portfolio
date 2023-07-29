@@ -31,9 +31,11 @@ const About = () => {
                   <p>un développeur web full-stack</p>
               </div>
 
+              <p>Après deux ans de formations au métier de développeur ReactJS / NodeJS, je suis actuellement à la recherche d&apos;une alternance en tant que développeur Full stack</p>
+
               <a className={styles.cv} href="/cv-leo-legrand.pdf" download>Mon CV</a>
               
-              <p className={styles.disclaimer}>Mon site web est en cours de développement, certaines fonctionnalités ne sont pas intégrées, buggées et les visuels ne représentent pas encore la version finale du projet</p>
+              
          
          
       </main>     

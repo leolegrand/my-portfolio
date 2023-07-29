@@ -13,7 +13,7 @@ const Navigation = () => {
             <ul className={styles.list}>
                 <li className={ pathname === "/" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/">About</Link></li>
                 <li className={ pathname === "/Works" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/Works">Portfolio</Link></li>
-                <li className={ pathname === "/Contact" ? styles.listElementCurrent + " " + styles.listElement : styles.listElement}><Link href="/Contact">Contact</Link></li>
+                <li className={styles.listElement}><a href="mailto:leo.legrandm@gmail.com">Contact</a></li>
             </ul>
         </footer>
     );
